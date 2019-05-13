@@ -1,0 +1,10 @@
+1 otworzyc plik
+2 odczyt rozmiaru macierzu
+3 alokacja
+4 odczyt danych z pliku do pamięci
+5 fclose
+6 wyswietlenie
+7 zwolnienie pamięci
+
+
+ZABEZPIECZENIA MALLOC

@@ -1,0 +1,70 @@
+#ifndef vec_H
+#define vec_H
+
+
+class Vect
+{
+	public:
+		void setElement(int indeks, double liczba){
+			while(indeks>=this->sizeOfVec) throw outOfRange();
+			
+			data[indeks]=liczba;		
+		}
+		int getSize(){
+			return this->sizeOfVec;		
+		}
+		double getAverage(){
+			double sum=0;
+			for(int i=0;i<sizeOfVec;i++){
+				sum+=data[i];
+			}
+			if(sum!=0) return sum/sizeOfVec;
+			else	return 0;
+		}
+		double getMin(){
+			double min=data[0];
+			for(int i=1;i<sizeOfVec;i++){
+				if(data[i]<min)	min=data[i];
+			}
+			return min;
+		}
+		
+		vector(int x){
+			data = new double[x];
+			sizeOfVec=x;
+		}
+		~vector(){
+			delete[] this->data;
+		}
+		vector operator+ (const Vect& v){
+			
+			double* vCopy=new double[this->sizeOfVec+v.sizeOfVec];		
+			memcpy( vCopy, this->data, this->sizeOfVec * sizeof(double) );
+			memcpy( vCopy+this->sizeOfVec, v.data, v.sizeOfVec * sizeof(double) );
+    			this->sizeOfVec=this->sizeOfVec+v.sizeOfVec;
+    			delete [] this->data;
+    			this->data = vCopy;
+			return *this;
+		}
+		vector operator= (const Vect& v){
+			double* vCopy=new double[v.sizeOfVec];		
+			memcpy( vCopy, v.data, v.sizeOfVec * sizeof(double) );
+    			this->sizeOfVec=v.sizeOfVec;
+    			delete [] this->data;
+    			this->data = vCopy;
+			return *this;
+		}
+		friend ostream& operator<<( ostream& out, const Vect & vec ){
+    			out<<"[";
+			for(int i=0;i<vec.sizeOfVec;i++){
+				out<<vec.data[i]<<" ";
+			}
+			out<<"]";
+			return out;
+		};
+	private:
+		int sizeOfVec;
+		double* data;
+		class outOfRange{};
+};
+#endif

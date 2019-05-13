@@ -1,0 +1,21 @@
+#define INITIAL_STACK_SIZE 8
+
+struct Stack
+{
+int top=0; /* pierwsze wolne miejsce na stosie */
+int* data;
+int size;
+};
+
+void init(struct Stack* s);
+
+void destroy(struct Stack* s);
+
+void push(struct Stack* s, int element);
+
+int pop(struct Stack* s);
+
+void clear(struct Stack* s);
+
+bool isempty(struct Stack* s); 
+
